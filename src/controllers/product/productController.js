@@ -11,8 +11,8 @@ const getAllProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
-        const product = await productService.createProduct(req.body, req.user);
-        res.json({ data: product, status: "success" });
+        const pdfBuffer = await productService.createProduct(req.body, req.user);
+        pdfBuffer.pipe(res);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
