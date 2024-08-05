@@ -1,12 +1,14 @@
 # Invoices API
 
-Invoices API is a simple and efficient API for managing invoices. This project provides endpoints to create, read, update, and delete invoices. It's built using JavaScript and includes environment configuration and package management.
+Invoices API is a simple and efficient API for managing invoices. This project provides endpoints to create an user, get accesstoken for an user, create products and visualize the invoices. 
+It's built using JavaScript and includes environment configuration and package management.
 
 ## Features
 
 - Create new user
 - Autheticate User
-- Create invoice and render PDF
+- Create invoice and render PDF or image
+- Fetch a list of names of all invoices created
 
 ## Getting Started
 
@@ -18,12 +20,12 @@ Invoices API is a simple and efficient API for managing invoices. This project p
 
 ### Library used
 
-- Joi : used for types validation
+- Joi : used for types validation of body of request
 - Luxon : used for getting simplified date methods
 - Uuid : used for getting unique ids
 - Dotenv : used for loading envs from proccess.env
 - Winston : used for logging
-- Jsonwebtoken
+- Jsonwebtoken : used for jwt tokens for user authentication
 
 ### Installation
 
