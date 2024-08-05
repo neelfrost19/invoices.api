@@ -26,3 +26,8 @@ jobs:
         with:
           push: true
           tags: neelfrost19/invoices:latest
+
+      - name: Trigger Render Deploy Workflow
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          event-type: render-deploy
