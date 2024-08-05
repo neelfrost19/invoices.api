@@ -1,4 +1,5 @@
 import crypto from "crypto";
+
 import {ENCRYPTION_KEY} from "../envs/index.js";
 import {Logger} from "./logger.js";
 
@@ -9,7 +10,6 @@ export class Encryption {
       static encrypt(text) {
         try {
             const iv = crypto.randomBytes(16); // Initialization vector
-            console.log('old iv', iv);
             const cipher = crypto.createCipheriv('aes-256-cbc', secretKey, iv);
             let encrypted = cipher.update(text);
             encrypted = Buffer.concat([encrypted, cipher.final()]);

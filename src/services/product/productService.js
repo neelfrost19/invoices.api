@@ -9,9 +9,8 @@ import DataroomModel from "../../models/dataroom/dataroomModel.js";
 
 class ProductService {
     static async getAllProducts(req, res) {
-        console.log(req.user);
-        const id = req.user.id; // Ensure id is fetched from the user object
-        return ProductModel.find(id, undefined, undefined);
+        const {userId} = req.user;
+        return ProductModel.find({userId}, undefined, undefined);
     }
 
     static async createProduct(body, user) {
