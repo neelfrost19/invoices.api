@@ -16,6 +16,15 @@ Invoices API is a simple and efficient API for managing invoices. This project p
 - npm (Node Package Manager)
 - MongoDb
 
+### Library used
+
+- Joi
+- Luxon
+- Uuid
+- Dotenv
+- Winston
+- Jsonwebtoken
+
 ### Installation
 
 1. Clone the repository:

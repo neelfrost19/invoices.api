@@ -1,28 +1,30 @@
-import userService from "../../services/user/userService.js";
+import UserService from "../../services/user/UserService.js";
 import UserValidator from "../../validator/user/userValidator.js";
 
-const getUser = async (req, res) => {
-    try {
-        const user = await userService.getUser();
-        res.json({ data: user, status: "success" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-};
-
-const createUser = async (req, res) => {
-    try {
-        const { error } = UserValidator.validate(req.body);
-        if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+class UserController {
+    static async getUser(req, res) {
+        try {
+            const user = await UserService.getUser();
+            res.json({ data: user, status: "success" });
+        } catch (err) {
+            res.status(500).json({ error: err.message });
         }
-        const user = await userService.createUser(req.body);
-        res.json({ data: user, status: "success" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
     }
-};
 
-export {createUser, getUser};
+    static async createUser(req, res) {
+        try {
+            const { error } = UserValidator.validate(req.body);
+            if (error) {
+                return res.status(400).json({ error: error.details[0].message });
+            }
+            const user = await UserService.createUser(req.body);
+            res.json({ data: user, status: "success" });
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    }
+}
+
+export default UserController;
 
 
