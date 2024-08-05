@@ -5,7 +5,7 @@ import { GenerateDoc } from "../../libs/generateDoc.js";
 import { Logger } from "../../libs/logger.js";
 
 import ProductModel from "../../models/product/productModel.js";
-import DataroomModel from "../../models/dataroom/dataroomModel.js";
+import DataroomModel from "../../models/invoice/invoiceModel.js";
 
 class ProductService {
     static async getAllProducts(req, res) {

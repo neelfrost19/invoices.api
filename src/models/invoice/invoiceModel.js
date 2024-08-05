@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const {Schema} = mongoose;
 
-const DataroomSchema = new Schema(
+const InvoiceSchema = new Schema(
     {
         documentName:{
             type: String,
@@ -20,6 +20,6 @@ const DataroomSchema = new Schema(
     {timestamps: true}
 );
 
-const Dataroom = mongoose.model('dataroom', DataroomSchema);
+const Invoice = mongoose.model('invoice', InvoiceSchema);
 
-export default Dataroom;
+export default Invoice;
