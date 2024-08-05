@@ -1,4 +1,6 @@
 import productService from "../../services/product/productService.js";
+import ProductValidator from "../../validator/product/productValidator.js";
+ProductValidator
 
 const getAllProduct = async (req, res) => {
     try {
@@ -11,6 +13,7 @@ const getAllProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
+        const { error } = ProductValidator.validate(req.body);
         const pdfBuffer = await productService.createProduct(req.body, req.user);
         pdfBuffer.pipe(res);
     } catch (err) {

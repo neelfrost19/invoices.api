@@ -1,6 +1,7 @@
 import UserModel from "../../models/user/userModel.js";
 import {Encryption} from "../../libs/encryption.js";
 import {RegexChecker} from "../../libs/regexChecker.js";
+
 const getUser = async (id) => {
     return UserModel.find(id, undefined, undefined);
 };
