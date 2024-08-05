@@ -1,7 +1,7 @@
 import fs from "fs";
 import { DateTime } from "luxon";
 
-import { GeneratePdf } from "../../libs/generatePdf.js";
+import { GenerateDoc } from "../../libs/generateDoc.js";
 import { Logger } from "../../libs/logger.js";
 
 import ProductModel from "../../models/product/productModel.js";
@@ -17,8 +17,9 @@ class ProductService {
         const { userId } = user;
         const productData = [];
         const formattedDate = DateTime.now().toFormat('MM-dd-yyyy');
+        const {products, invoiceType} = body;
 
-        body.forEach((product) => {
+        products.forEach((product) => {
             const { name, quantity, rate } = product;
             const gstRate = rate + (rate * 0.18);
             productData.push({ name, quantity, rate, userId, gstRate, date: formattedDate });
@@ -26,15 +27,16 @@ class ProductService {
 
         await ProductModel.insertMany(productData);
 
-        const fileData = await GeneratePdf.generatePdf(productData, userId);
+        const fileData = await GenerateDoc.generateDoc(productData, userId, invoiceType);
+
         if (!fileData) {
-            Logger.error('PDF generation failed');
-            throw new Error('PDF generation failed');
+            Logger.error('Document generation failed');
+            throw new Error('Document generation failed');
         }
 
-        const { pdfPath, fileName } = fileData;
+        const { docPath, fileName } = fileData;
         await DataroomModel.create({ userId, documentName: fileName }, undefined);
-        return fs.createReadStream(pdfPath);
+        return fs.createReadStream(docPath);
     }
 }
 

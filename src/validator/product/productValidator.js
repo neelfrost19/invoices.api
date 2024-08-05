@@ -6,7 +6,10 @@ const productElementSchema = Joi.object({
     rate: Joi.number().min(0).required()
 });
 
-const productSchema = Joi.array().items(productElementSchema).min(1);
+const productSchema = Joi.object({
+    products: Joi.array().items(productElementSchema).min(1),
+    invoiceType: Joi.string().valid('pdf', 'img').optional(),
+});
 
 class ProductValidator {
     static validate(data) {
