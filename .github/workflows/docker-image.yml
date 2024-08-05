@@ -30,4 +30,5 @@ jobs:
       - name: Trigger Render Deploy Workflow
         uses: peter-evans/repository-dispatch@v1
         with:
+          token: ${{ secrets.GHUB_TOKEN }}
           event-type: render-deploy
