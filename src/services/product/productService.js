@@ -2,6 +2,8 @@ import fs from "fs";
 import ProductModel from "../../models/product/productModel.js";
 import {GeneratePdf} from "../../libs/generatePdf.js";
 import {DateTime} from "luxon";
+import DataroomModel from "../../models/dataroom/dataroomModel.js";
+import {Logger} from "../../libs/logger.js";
 
 const getAllProduct = async (req, res) => {
     console.log(req.user);
@@ -19,7 +21,13 @@ const createProduct = async (body, user) => {
     });
     await ProductModel.insertMany(productData);
 
-    const pdfPath = await GeneratePdf.generatePdf(productData, userId);
+    const fileData = await GeneratePdf.generatePdf(productData, userId);
+    if(!fileData){
+        Logger.error('pdf generation failed');
+        throw new Error('pdf generation failed');
+    }
+    const {pdfPath, fileName} = fileData;
+    await DataroomModel.create({userId, documentName: fileName}, undefined)
     return fs.createReadStream(pdfPath);
 };
 
