@@ -28,36 +28,36 @@ Invoices API is a simple and efficient API for managing invoices. This project p
 ### Installation
 
 1. Clone the repository:
-    git clone https://github.com/neelfrost19/invoices.api.git
-   
+   git clone https://github.com/neelfrost19/invoices.api.git
+
 2. Navigate to the project directory:
-    cd invoices.api
-   
+   cd invoices.api
+
 3. Install the dependencies:
-    npm install
+   npm install
 
 ### Configuration
 
 1. Copy the example environment configuration file:
-    cp .env.example .env
-   
+   cp .env.example .env
+
 2. Edit the `.env` file with your configuration settings.
 
 ### Setting Up ENV
 
 1. For port use any desired port.
-	example: 3001
-	
+   example: 3001
+
 2. For DB_URL, create a cluster in mongo atlas or use the one provided.
-	provided DB_URL = mongodb+srv://externalUser:HTuxpvFvL2FjMVh6@clusterfrost.kctonhr.mongodb.net/
-	
+   provided DB_URL = mongodb+srv://externalUser:HTuxpvFvL2FjMVh6@clusterfrost.kctonhr.mongodb.net/
+
 3. For ENCRYPTION_KEY, create a random byte of length 32 using crypto module and then convert it to hexadecimal.
-	Use the following code: `crypto.randomBytes(32).toString('hex')` or use the following example without quotes:
-	`52cca9110964d9009ca8fc69c3111a6e6e25d199ea90fc9136a9dde8ce08e6b6`
+   Use the following code: `crypto.randomBytes(32).toString('hex')` or use the following example without quotes:
+   `52cca9110964d9009ca8fc69c3111a6e6e25d199ea90fc9136a9dde8ce08e6b6`
 
 4. For SECRET_KEY, create a random byte of length 64 using crypto module and then convert it to hexadecimal.
-	Use the following code: `crypto.randomBytes(64).toString('hex')` or use the following example without quotes:
-	`509a1d3c175150ed74db8a729945ee2b5e0b8d540902456f9cdfb1e01b1b7221138e9c931abf4f4f651b5b342f41b97b9f72a5a73aeefb7902ef948bcd24f07d`
+   Use the following code: `crypto.randomBytes(64).toString('hex')` or use the following example without quotes:
+   `509a1d3c175150ed74db8a729945ee2b5e0b8d540902456f9cdfb1e01b1b7221138e9c931abf4f4f651b5b342f41b97b9f72a5a73aeefb7902ef948bcd24f07d`
 
 ### Running the API
 
@@ -73,90 +73,90 @@ package.json - Project metadata and dependencies
 
 ### Using the provided APIs
 
-Postman collection link: 
+Postman collection link: https://api.postman.com/collections/25482684-7ddd7f21-51a7-467e-9367-0dc966d2f92f?access_key=PMAT-01J4F0R1VR9EGYDXHXJWRQPKER
 
 
 APIs:
 
 1. createUser:
-	- It's a POST request which takes userName, email, password to create a user
-	- passwords aren't directly stored instead an encryption method is used to encrypt the password and then store
-	- Request Body : 
-	{
-		"userName": "Sonu Das",
-		"email": "sonu.das851@gmail.com",
-		"password": "NeelSonu1999*#"
-	}
-	
+    - It's a POST request which takes userName, email, password to create a user
+    - passwords aren't directly stored instead an encryption method is used to encrypt the password and then store
+    - Request Body :
+      {
+      "userName": "Sonu Das",
+      "email": "sonu.das851@gmail.com",
+      "password": "NeelSonu1999*#"
+      }
+
 2. userLogin
-	- It's a POST request which takes email and password to create an user accesstoken
-	- password is encrypted using the above used encryption method and then compared to the stored encrypted password along with email.
-	- Request Body : 
-	{
-		"email": "sonu.das851@gmail.com",
-		"password": "NeelSonu1999*#"
-	}
-	
+    - It's a POST request which takes email and password to create an user accesstoken
+    - password is encrypted using the above used encryption method and then compared to the stored encrypted password along with email.
+    - Request Body :
+      {
+      "email": "sonu.das851@gmail.com",
+      "password": "NeelSonu1999*#"
+      }
+
 3. createProduct
-	- It's a Post request which takes an object of array of product and an optional key called invoiceType.
-	- stores the list of product and creates an invoices whose type is either pdf or image depending upon invoiceType and then renders the document
-	- Request Body : 
-	{
-		"products": [
-			{
-				"name": "xyz",
-				"quantity": 1,
-				"rate": 10
-			},
-			{
-				"name": "abc",
-				"quantity": 2,
-				"rate": 30
-			},
-			{
-				"name": "bot",
-				"quantity": 9,
-				"rate": 20
-			},
-			{
-				"name": "aloo",
-				"quantity": 111,
-				"rate": 2
-			}
-		],
-		"invoiceType": "pdf"
-	}
-	
-	- In the above request body, invoiceType is optional. If invoiceType is not supplied then the api will render a pdf and store a pdf in download of the project.
-	- Invoice type can be img, this will result in image generation of .png extension and stored in downloads.
-	For example:
-	
-	{
-		"products": [
-			{
-				"name": "frost",
-				"quantity": 231,
-				"rate": 5
-			},
-			{
-				"name": "frost123",
-				"quantity": 317,
-				"rate": 3
-			}
-		],
-		"invoiceType": "img"
-	}
-	
+    - It's a Post request which takes an object of array of product and an optional key called invoiceType.
+    - stores the list of product and creates an invoices whose type is either pdf or image depending upon invoiceType and then renders the document
+    - Request Body :
+      {
+      "products": [
+      {
+      "name": "xyz",
+      "quantity": 1,
+      "rate": 10
+      },
+      {
+      "name": "abc",
+      "quantity": 2,
+      "rate": 30
+      },
+      {
+      "name": "bot",
+      "quantity": 9,
+      "rate": 20
+      },
+      {
+      "name": "aloo",
+      "quantity": 111,
+      "rate": 2
+      }
+      ],
+      "invoiceType": "pdf"
+      }
+
+    - In the above request body, invoiceType is optional. If invoiceType is not supplied then the api will render a pdf and store a pdf in download of the project.
+    - Invoice type can be img, this will result in image generation of .png extension and stored in downloads.
+      For example:
+
+   {
+   "products": [
+   {
+   "name": "frost",
+   "quantity": 231,
+   "rate": 5
+   },
+   {
+   "name": "frost123",
+   "quantity": 317,
+   "rate": 3
+   }
+   ],
+   "invoiceType": "img"
+   }
+
 4. getInvoices
-	-Returns all invoices file name generated by the logged in user
-	
+   -Returns all invoices file name generated by the logged in user
+
 
 ### Commit and Push
 
 - After commiting and pushing any changes to master branch through the following command
-	`git push origin master`
-	Github action is triggered which automatically builds a docker image.
-	
+  `git push origin master`
+  Github action is triggered which automatically builds a docker image.
+
 - After the above github action is completed, deployment action is triggered.
 
 - The above triggers a webhook from render to automatically deploy using the latest docker image.
