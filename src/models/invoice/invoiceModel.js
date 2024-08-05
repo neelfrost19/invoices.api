@@ -12,10 +12,11 @@ const InvoiceSchema = new Schema(
             type: Schema.Types.ObjectId,
             required: true,
         },
-        __v: {
-            type: Number,
-            select: false,
-        },
+        docType:{
+            type: String,
+            enum: ['pdf', 'img'],
+            required: true,
+        }
     },
     {timestamps: true}
 );

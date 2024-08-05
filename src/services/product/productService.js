@@ -35,7 +35,7 @@ class ProductService {
         }
 
         const { docPath, fileName } = fileData;
-        await DataroomModel.create({ userId, documentName: fileName }, undefined);
+        await DataroomModel.create({ userId, documentName: fileName,  docType: invoiceType}, undefined);
         return fs.createReadStream(docPath);
     }
 }
