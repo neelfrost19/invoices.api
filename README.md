@@ -73,7 +73,7 @@ package.json - Project metadata and dependencies
 
 ### Using the provided APIs
 
-Postman collection link: https://api.postman.com/collections/25482684-7ddd7f21-51a7-467e-9367-0dc966d2f92f?access_key=PMAT-01J4F0R1VR9EGYDXHXJWRQPKER
+Postman collection link: 
 
 
 APIs:
