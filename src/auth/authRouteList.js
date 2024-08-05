@@ -3,4 +3,5 @@ export const authRouteList = {
     '/invoice': true,
     '/user': false,
     '/user-login': false,
+    '/download': false,
 }

@@ -5,12 +5,13 @@ import {config} from 'dotenv';
 import {Logger} from "./libs/logger.js";
 import {PORT, DB_URL} from "./envs/index.js";
 
+import {authenticateRequest} from "./auth/middleware.js";
+
 import userRoute from "./routes/userRoute.js";
 import userLoginRoute from "./routes/userLoginRoute.js";
 import invoiceRoute from "./routes/invoiceRoute.js";
-
 import productRoute from "./routes/productRoute.js";
-import {authenticateRequest} from "./auth/middleware.js";
+import downloadRoute from "./routes/downloadRoute.js";
 
 config();
 
@@ -53,6 +54,7 @@ app.use(userRoute);
 app.use(userLoginRoute);
 app.use(productRoute);
 app.use(invoiceRoute);
+app.use(downloadRoute);
 
 app.listen(PORT, () => {
    Logger.info(`Server is running on port ${PORT}`);
