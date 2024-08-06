@@ -18,7 +18,9 @@ export class GenerateDoc {
         try {
            const formattedDate = DateTime.now().toFormat('MM-dd-yyyy');
            const content = InvoiceTemplate.invoicePdf(product);
-           const browser = await puppeteer.launch();
+           const browser = await puppeteer.launch({
+              args: ['--no-sandbox', '--disable-setuid-sandbox']
+           });
            const page = await browser.newPage();
            await page.setContent(content);
            const dirPath = path.join(__parentDir, 'download', `${userId}`);
